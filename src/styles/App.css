@@ -1,0 +1,113 @@
+.container {
+  padding:0;
+}
+
+.jumbotron {
+  color: #fff;
+  background: url(https://static1.squarespace.com/static/5978f97d17bffcf8717aff7e/t/59791fe3be65943a4a8dc635/1501110728039/Cleveland_skyline_panoramaDARK.jpg?format=2500w) 50% 50% no-repeat;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.jumbotron .logo {
+  max-width: 200px;
+  margin: auto;
+}
+
+.jumbotron a, .jumbotron a:hover, .jumbotron a:visited, .jumbotron a:active, .footer a, .footer a:hover, .footer a:visited, .footer a:active {
+  color: #fff;
+  text-decoration: underline;
+}
+
+a, a:hover, a:visited, a:active {
+  color: #1B2489;
+  text-decoration: underline;
+}
+
+.people {
+  text-align: center;
+}
+
+.people .card {
+  padding: 0;
+  margin-right: .7em;
+  margin-bottom: .7em;
+  max-width: 176px;
+}
+
+.people .card:last-of-type {
+  margin-right: 0;
+}
+
+.people .card .slots {
+  padding: 0 0 0 1.3em;
+}
+
+.people .card .slots .even {
+  background-color: #efefef;
+}
+
+.card-title i.small {
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.card-body {
+  padding: 1em;
+}
+
+.card-title {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.submit {
+  margin-top: 2em;
+}
+
+.footer {
+  margin-top: 10em;
+  background-color: #B14A47;
+  padding: 2em 0 3em;
+  text-align: center;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #B14A47;
+  cursor: pointer;
+  border: none;
+  width: 30%;
+  min-width: 300px;
+  font-family: 'Futura', 'Nunito Sans', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  text-transform: uppercase;
+  border-radius: 30px;
+}
+
+.btn-primary:hover {
+  background-color: #B14A47;
+  border: none;
+}
+
+.form-check-label {
+  padding-left: .1em;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Futura', 'Nunito Sans', Helvetica, Arial, sans-serif;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+p.lead {
+  font-size: 1.5em;
+}
+p.small {
+  text-align: left;
+  padding: 0 1em;
+}
