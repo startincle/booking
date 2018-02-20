@@ -80,7 +80,7 @@ class App extends Component {
           </div>
         </div>
         <div className="people container">
-          <div className="row justify-content-center mt-4 py-5">
+          <div className="justify-content-center mt-4 py-5">
             <p className="lead px-5">
               Please select up to three meeting slots with the mentors you would
               like to meet with during the community office hours. Not all slots
@@ -89,15 +89,16 @@ class App extends Component {
               participating!
             </p>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mx-0">
             {this.state.people.map(value => (
               <Card
                 key={value.name}
+                person={value}
                 name={value.name}
                 title={value.title}
                 image={value.image}
-                times={this.state.times}
                 slots={value.slots}
+                times={this.state.times}
                 handleChange={this.handleChange}
                 selected={this.state.selected}
               />
