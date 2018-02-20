@@ -1,30 +1,26 @@
 import React from 'react';
 import Slot from './Slot';
 
-const Card = ({ image, name, title, times, slots, handleChange, selected }) => (
+const Card = ({ person, times, handleChange, selected }) => (
   <div className="card">
     <img
       className="card-img-top"
-      src={image}
-      alt={name}
+      src={person.image}
+      alt={person.name}
     />
     <div className="card-body">
-      <h6
-        className="card-title"
-        data-toggle="tooltip"
-        data-html="true"
-        data-placement="bottom"
-        title={title}
-      >
-        {name}
-      </h6>
+      <a href={person.url} target="_blank">
+        <h6 className="card-title">
+          {person.name}
+        </h6>
+      </a>
       <div className="slots">
         {times.map((time, index) => (
         <Slot
           key={time}
-          slot={slots[index]}
+          slot={person.slots[index]}
           time={time}
-          name={name}
+          name={person.name}
           handleChange={handleChange}
           selected={selected}
         />
