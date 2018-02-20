@@ -27,7 +27,7 @@ class App extends Component {
   handleChange = e => {
     let selected = this.state.selected;
     selected = selected.filter((value) => value.name !== e.target.name);
-    if (selected.length === 2) {
+    if (selected.length === 3) {
       selected.shift();
     }
     selected.push({ name: e.target.name, time: e.target.value, index: this.state.times.findIndex(value => value === e.target.value) });
