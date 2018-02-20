@@ -2,6 +2,7 @@
   "name": "booking",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://officehours.startincle.com",
   "dependencies": {
     "mailgun.js": "^2.0.1",
     "react": "^16.2.0",
