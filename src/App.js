@@ -1,36 +1,15 @@
 import React, { Component } from 'react';
 import Card from './Card';
 
-const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRcjfFLuJ09-f6QHgGzUQyDKs7teuBQaUcBZDX1SnINFERPopy5VR0h0hJ0CFXOwHtFGWnxFixtDCas/pub?output=csv';
-const parseCSV = (csv) => {
-  const rows = csv.split('\n');
-  const times = rows.shift().split(',').slice(3);
-  const people = rows.map(value => {
-    const row = value.split(',');
-    const person = {};
-    person['name'] = row.shift();
-    person['image'] = row.shift();
-    person['slots'] = row.splice(-6);
-    person['title'] = row.reduce((a,b) => `${a},`.concat(b));
-    return person;
-  });
-  return { people, times };
-}
-
-const getData = async () => {
-  const response = await fetch (sheetUrl);
-  const body = await response.text();
-  return parseCSV(body);
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       people: [],
-      times: [],
+      times: ['2:00 PM', '2:20 PM', '2:40 PM', '3:00 PM', '3:20 PM', '3:40 PM'],
       selected: [],
+      email: '',
     }
   }
 
@@ -39,9 +18,10 @@ class App extends Component {
   }
 
   getData = async () => {
-    const response = await fetch (sheetUrl);
-    const body = await response.text();
-    this.setState(parseCSV(body));
+    const response = await fetch(`https://startincle-booking.herokuapp.com/`);
+    const people = await response.json();
+    this.setState({ people });
+    this.forceUpdate();
   }
 
   handleChange = e => {
@@ -50,8 +30,32 @@ class App extends Component {
     if (selected.length === 2) {
       selected.shift();
     }
-    selected.push({ name: e.target.name, time: e.target.value });
+    selected.push({ name: e.target.name, time: e.target.value, index: this.state.times.findIndex(value => value === e.target.value) });
     this.setState({ selected });
+  }
+
+  handleEmail = e => {
+    this.setState({ email: e.target.value })
+  }
+
+  submit = async e => {
+    if (this.state.email === '') {
+      alert('Please enter a valid email!');
+      return;
+    }
+    if (this.state.selected.length === 0) {
+      alert('Please select at least one time slot');
+      return;
+    }
+    await fetch(`https://startincle-booking.herokuapp.com/submit`, {
+      method: 'POST',
+      body: JSON.stringify({ selected: this.state.selected, email: this.state.email }),
+      headers: {
+        'content-type': 'application/json'
+      },
+    });
+    this.setState({ selected: []}, () => { this.getData() })
+    alert('Your slots have been booked!')
   }
 
   render() {
@@ -104,11 +108,16 @@ class App extends Component {
         <div className="submit text-center">
           <div className="row justify-content-sm-center mx-0 px-0">
             <div className="col-md-6">
-              <input className="form-control form-control-lg" type="email" placeholder="Your Email Address" />
+              <input
+                className="form-control form-control-lg"
+                type="email"
+                placeholder="Your Email Address"
+                onChange={this.handleEmail}
+              />
             </div>
             <div className="row justify-content-sm-center mt-4 mx-0 px-0">
               <div className="col-md-6">
-                <div className="btn btn-lg btn-primary">
+                <div className="btn btn-lg btn-primary" onClick={this.submit}>
                   Request Time Slots
                 </div>
                 <p className="mt-4">

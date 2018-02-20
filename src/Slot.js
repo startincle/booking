@@ -17,4 +17,5 @@ const Slot = ({ time, slot, name, handleChange, selected }) => (
   </div>
 );
 
+
 export default Slot

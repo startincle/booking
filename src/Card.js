@@ -1,8 +1,6 @@
 import React from 'react';
 import Slot from './Slot';
 
-const serialize = (name) => name.split(' ').reduce((a,b) => `${a}_`.concat(b));
-
 const Card = ({ image, name, title, times, slots, handleChange, selected }) => (
   <div className="card">
     <img
@@ -26,7 +24,7 @@ const Card = ({ image, name, title, times, slots, handleChange, selected }) => (
           key={time}
           slot={slots[index]}
           time={time}
-          name={serialize(name)}
+          name={name}
           handleChange={handleChange}
           selected={selected}
         />
