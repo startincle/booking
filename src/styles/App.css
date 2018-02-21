@@ -111,3 +111,8 @@ p.small {
   text-align: left;
   padding: 0 1em;
 }
+
+.form-check.disabled .form-check-label {
+  color: #868e96;
+  text-decoration: line-through !important;
+}
